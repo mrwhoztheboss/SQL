@@ -1,0 +1,86 @@
+Database Continued ...
+Concept Of Aliasing Is Used For Simplification ...
+
+mysql> select st.Sid,st.Name,su.Subcode,su.Dept from Student st CROSS JOIN Subject su;
++-----+-------+---------+------+
+| Sid | Name  | Subcode | Dept |
++-----+-------+---------+------+
+|   1 | Virat |    7400 | INFT |
+|   2 | Rohit |    7400 | INFT |
+|   3 | Dhoni |    7400 | INFT |
+|   1 | Virat |    7401 | ELEC |
+|   2 | Rohit |    7401 | ELEC |
+|   3 | Dhoni |    7401 | ELEC |
+|   1 | Virat |    7402 | CMPN |
+|   2 | Rohit |    7402 | CMPN |
+|   3 | Dhoni |    7402 | CMPN |
+|   1 | Virat |    7404 | INFT |
+|   2 | Rohit |    7404 | INFT |
+|   3 | Dhoni |    7404 | INFT |
++-----+-------+---------+------+
+12 rows in set (0.00 sec)
+
+
+mysql> select st.Sid,st.Name,sc.Subcode,sc.Marks from Student st INNER JOIN Score sc ON st.Sid=sc.Sid;
++-----+-------+---------+-------+
+| Sid | Name  | Subcode | Marks |
++-----+-------+---------+-------+
+|   1 | Virat |    7400 |    49 |
+|   2 | Rohit |    7401 |    68 |
+|   3 | Dhoni |    7400 |    59 |
+|   2 | Rohit |    7402 |    34 |
+|   1 | Virat |    7401 |    74 |
+|   3 | Dhoni |    7402 |    42 |
++-----+-------+---------+-------+
+6 rows in set (0.00 sec)
+
+NOTE : Self Join is a Sub Derivative of INNER JOIN.
+       Here We JOin Attributes Of Same Table.
+
+
+mysql> select * from Score NATURAL JOIN Subject;
++---------+-----+-------+----------+------+
+| Subcode | Sid | Marks | Sub_Name | Dept |
++---------+-----+-------+----------+------+
+|    7400 |   1 |    49 | DBMS     | INFT |
+|    7401 |   2 |    68 | LD       | ELEC |
+|    7400 |   3 |    59 | DBMS     | INFT |
+|    7402 |   2 |    34 | JAVA     | CMPN |
+|    7401 |   1 |    74 | LD       | ELEC |
+|    7402 |   3 |    42 | JAVA     | CMPN |
+|    7404 |   2 |    50 | DSA      | INFT |
++---------+-----+-------+----------+------+
+7 rows in set (0.00 sec)
+
+
+mysql> select * from Student st LEFT OUTER JOIN Score sc ON st.Sid=sc.Sid;
++-----+-------+---------+------+---------+-------+
+| Sid | Name  | Address | Sid  | Subcode | Marks |
++-----+-------+---------+------+---------+-------+
+|   1 | Virat | Delhi   |    1 |    7400 |    49 |
+|   2 | Rohit | Mumbai  |    2 |    7401 |    68 |
+|   3 | Dhoni | Ranchi  |    3 |    7400 |    59 |
+|   2 | Rohit | Mumbai  |    2 |    7402 |    34 |
+|   1 | Virat | Delhi   |    1 |    7401 |    74 |
+|   3 | Dhoni | Ranchi  |    3 |    7402 |    42 |
+|   2 | Rohit | Mumbai  |    2 |    7404 |    50 |
++-----+-------+---------+------+---------+-------+
+7 rows in set (0.00 sec)
+
+
+mysql> select * from Score sr RIGHT OUTER JOIN Subject sb ON sr.Subcode=sb.Subcode;
++------+---------+-------+---------+----------+------+
+| Sid  | Subcode | Marks | Subcode | Sub_Name | Dept |
++------+---------+-------+---------+----------+------+
+|    1 |    7400 |    49 |    7400 | DBMS     | INFT |
+|    2 |    7401 |    68 |    7401 | LD       | ELEC |
+|    3 |    7400 |    59 |    7400 | DBMS     | INFT |
+|    2 |    7402 |    34 |    7402 | JAVA     | CMPN |
+|    1 |    7401 |    74 |    7401 | LD       | ELEC |
+|    3 |    7402 |    42 |    7402 | JAVA     | CMPN |
+|    2 |    7404 |    50 |    7404 | DSA      | INFT |
++------+---------+-------+---------+----------+------+
+7 rows in set (0.00 sec)
+
+NOTE : Full Joins Are NOT Supported in MySQL.
+       They can only be Emulated using various joins.
