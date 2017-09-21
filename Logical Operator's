@@ -1,0 +1,26 @@
+Database Continued ... 
+
+mysql> select * from Student Where Address NOT IN('Mumbai','Delhi');
++-----+-------+---------+
+| Sid | Name  | Address |
++-----+-------+---------+
+|   3 | Dhoni | Ranchi  |
++-----+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from Student where Sid=02 OR Address='Ranchi';
++-----+-------+---------+
+| Sid | Name  | Address |
++-----+-------+---------+
+|   2 | Rohit | Mumbai  |
+|   3 | Dhoni | Ranchi  |
++-----+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Score where Subcode='7402' AND Sid=02  ;
++-----+---------+-------+
+| Sid | Subcode | Marks |
++-----+---------+-------+
+|   2 |    7402 |    34 |
++-----+---------+-------+
+1 row in set (0.01 sec)
