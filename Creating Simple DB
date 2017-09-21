@@ -1,0 +1,154 @@
+mega@ubuntu:~$ mysql -uroot -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is (LUL)
+Server version: 5.7.19-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+
+mysql> create database atharva;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use atharva
+Database changed
+
+mysql> create table Student( Sid INT NOT NULL,Name varchar(100),Address varchar(100));
+Query OK, 0 rows affected (0.90 sec)
+
+mysql> create table Subject( Subcode INT NOT NULL,Sub_Name varchar(20),Dept varchar(20));
+Query OK, 0 rows affected (0.60 sec)
+
+mysql> create table Score(Sid INT NOT NULL,Subcode INT NOT NULL,Marks INT);
+Query OK, 0 rows affected (0.57 sec)
+
+mysql> alter table Student add primary key(Sid);
+Query OK, 0 rows affected (1.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Subject add primary key(Subcode);
+Query OK, 0 rows affected (1.30 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Score add foreign key(Sid) references Student(Sid);
+Query OK, 0 rows affected (1.65 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Score add foreign key(Subcode) references Subject (Subcode);
+Query OK, 0 rows affected (1.66 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| Sid     | int(11)      | NO   | PRI | NULL    |       |
+| Name    | varchar(100) | YES  |     | NULL    |       |
+| Address | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc Subject;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Subcode  | int(11)     | NO   | PRI | NULL    |       |
+| Sub_Name | varchar(20) | YES  |     | NULL    |       |
+| Dept     | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc Score;
++---------+---------+------+-----+---------+-------+
+| Field   | Type    | Null | Key | Default | Extra |
++---------+---------+------+-----+---------+-------+
+| Sid     | int(11) | NO   | MUL | NULL    |       |
+| Subcode | int(11) | NO   | MUL | NULL    |       |
+| Marks   | int(11) | YES  |     | NULL    |       |
++---------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Student values(01,'Virat','Delhi');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into Student values(02,'Rohit','Mumbai');
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into Student values(03,'Dhoni','Ranchi');
+Query OK, 1 row affected (0.09 sec)
+
+
+mysql> insert into Subject values(7400,'DBMS','INFT');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into Subject values(7401,'LD','ELEC');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into Subject values(7402,'JAVA','CMPN');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into Subject values (7404,'DSA','INFT');
+Query OK, 1 row affected (0.12 sec)
+
+
+mysql> insert into Score values(01,7400,49);
+Query OK, 1 row affected (0.37 sec)
+
+mysql> insert into Score values(02,7401,68);
+Query OK, 1 row affected (0.34 sec)
+
+mysql> insert into Score values(03,7400,59);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into Score values(02,7402,34);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into Score values(01,7401,74);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into Score values(03,7402,42);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into Score values(02,7404,50);
+Query OK, 1 row affected (0.18 sec)
+
+
+mysql> select * from Student;
++-----+-------+---------+
+| Sid | Name  | Address |
++-----+-------+---------+
+|   1 | Virat | Delhi   |
+|   2 | Rohit | Mumbai  |
+|   3 | Dhoni | Ranchi  |
++-----+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Subject;
++---------+----------+------+
+| Subcode | Sub_Name | Dept |
++---------+----------+------+
+|    7400 | DBMS     | INFT |
+|    7401 | LD       | ELEC |
+|    7402 | JAVA     | CMPN |
+|    7404 | DSA      | INFT |
++---------+----------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Score;
++-----+---------+-------+
+| Sid | Subcode | Marks |
++-----+---------+-------+
+|   1 |    7400 |    49 |
+|   2 |    7401 |    68 |
+|   3 |    7400 |    59 |
+|   2 |    7402 |    34 |
+|   1 |    7401 |    74 |
+|   3 |    7402 |    42 |
+|   2 |    7404 |    50 |
++-----+---------+-------+
+7 rows in set (0.00 sec)
+
