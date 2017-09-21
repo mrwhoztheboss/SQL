@@ -1,0 +1,45 @@
+Database Continued ...
+
+Single Row Return Value Sub-Query ==>
+
+mysql>  select * from Student where Sid=(select Sid from Score where Marks>70);
++-----+-------+---------+
+| Sid | Name  | Address |
++-----+-------+---------+
+|   1 | Virat | Delhi   |
++-----+-------+---------+
+1 row in set (0.02 sec)
+
+
+Multiple Row Return Value Sub-Query ==>
+
+mysql>  select * from Student where Sid IN (select Sid from Score where Marks>60);
++-----+-------+---------+
+| Sid | Name  | Address |
++-----+-------+---------+
+|   2 | Rohit | Mumbai  |
+|   1 | Virat | Delhi   |
++-----+-------+---------+
+2 rows in set (0.04 sec)
+
+mysql>  select * from Student where Sid>ANY (select Sid from Score where Marks>70);
++-----+-------+---------+
+| Sid | Name  | Address |
++-----+-------+---------+
+|   2 | Rohit | Mumbai  |
+|   3 | Dhoni | Ranchi  |
++-----+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Student Where Sid<All (select Sid from Score  where Marks>70 );
+Empty set (0.01 sec)
+
+mysql> select * from Student Where Sid>All (select Sid from Score  where Marks>70 );
++-----+-------+---------+
+| Sid | Name  | Address |
++-----+-------+---------+
+|   2 | Rohit | Mumbai  |
+|   3 | Dhoni | Ranchi  |
++-----+-------+---------+
+2 rows in set (0.00 sec)
+
