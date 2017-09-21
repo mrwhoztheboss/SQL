@@ -1,0 +1,57 @@
+Database Continued ...
+
+mysql> select count(*) from Student;
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.03 sec)
+
+mysql> select count(*) Total_Students from Student; 
++----------------+
+| Total_Students |
++----------------+
+|              3 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select Count(Distinct Subcode) from Score;
++-------------------------+
+| Count(Distinct Subcode) |
++-------------------------+
+|                       3 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Sum(Marks) from Score where Sid=01;
++------------+
+| Sum(Marks) |
++------------+
+|        123 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select Avg(Marks) from Score where Sid=02;
++------------+
+| Avg(Marks) |
++------------+
+|    51.0000 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select Min(Marks) from Score;
++------------+
+| Min(Marks) |
++------------+
+|         34 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select Max(Marks) from Score;
++------------+
+| Max(Marks) |
++------------+
+|         74 |
++------------+
+1 row in set (0.00 sec)
