@@ -1,0 +1,21 @@
+Database Continued ...
+
+mysql> select * from Student Where Address IN('Mumbai','Delhi');
++-----+-------+---------+
+| Sid | Name  | Address |
++-----+-------+---------+
+|   1 | Virat | Delhi   |
+|   2 | Rohit | Mumbai  |
++-----+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Subject where Sub_Name like 'J%';
++---------+----------+------+
+| Subcode | Sub_Name | Dept |
++---------+----------+------+
+|    7402 | JAVA     | CMPN |
++---------+----------+------+
+1 row in set (0.00 sec)
+
+
+
