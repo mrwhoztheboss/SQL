@@ -1,0 +1,13 @@
+Database Continued ...
+
+mysql> select * from Student where Address='Ranchi' Union select * from Student where Address='Mumbai';
++-----+-------+---------+
+| Sid | Name  | Address |
++-----+-------+---------+
+|   3 | Dhoni | Ranchi  |
+|   2 | Rohit | Mumbai  |
++-----+-------+---------+
+2 rows in set (0.00 sec)
+
+NOTE : MySQL Doesn't Support INTERSECT & MINUS Set Operators.
+       Desired Result Can Be Obtained By Manipulating Joins ! 	
