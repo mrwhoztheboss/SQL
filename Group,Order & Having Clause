@@ -1,0 +1,30 @@
+Database Continued ...
+
+mysql> select Sub_Name from Subject where Dept='INFT' Group By Sub_Name;
++----------+
+| Sub_Name |
++----------+
+| DBMS     |
+| DSA      |
++----------+
+2 rows in set (0.03 sec)
+
+mysql> select * from Score where Marks>50 Order by Marks DESC;
++-----+---------+-------+
+| Sid | Subcode | Marks |
++-----+---------+-------+
+|   1 |    7401 |    74 |
+|   2 |    7401 |    68 |
+|   3 |    7400 |    59 |
++-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select Sid,Sum(Marks) from Score Group BY Sid Having Sum(Marks)>100;
++-----+------------+
+| Sid | Sum(Marks) |
++-----+------------+
+|   1 |        123 |
+|   2 |        102 |
+|   3 |        101 |
++-----+------------+
+3 rows in set (0.03 sec)
