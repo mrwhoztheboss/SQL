@@ -1,0 +1,19 @@
+Database Continued ...
+
+mysql> CREATE VIEW INFT_DEPARTMENT AS
+    -> select * from Subject where Dept='INFT';
+Query OK, 0 rows affected (0.34 sec)
+
+mysql> select * from INFT_DEPARTMENT;
++---------+----------+------+
+| Subcode | Sub_Name | Dept |
++---------+----------+------+
+|    7400 | DBMS     | INFT |
+|    7404 | DSA      | INFT |
++---------+----------+------+
+2 rows in set (0.00 sec)
+
+mysql> drop view INFT_DEPARTMENT;
+Query OK, 0 rows affected (0.00 sec)
+
+Complex & SUB Query's Can Also be Used For Execution ;)
