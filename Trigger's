@@ -1,0 +1,70 @@
+Databases Updated ... 
+
+mysql> alter table Student add column Adult varchar(10);
+Query OK, 0 rows affected (1.35 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select*from Student;
++-----+-------+---------+------+-------+
+| Sid | Name  | Address | Age  | Adult |
++-----+-------+---------+------+-------+
+|   1 | Virat | Delhi   |   24 | NULL  |
+|   2 | Rohit | Mumbai  |   22 | NULL  |
+|   3 | Dhoni | Ranchi  |   32 | NULL  |
++-----+-------+---------+------+-------+
+3 rows in set (0.00 sec)
+
+Concept of #Delimiter// ( Changes The Default Terminating Symbol(;) TO (//)Symbol )
+
+mysql> delimiter //
+
+mysql> create trigger adult_check before insert
+    -> on Student
+    -> for each row
+    -> begin
+    -> if new.Age > 18 then
+    -> set new.Adult = "Valid";
+    -> else
+    -> set new.Adult = "InValid";
+    -> end if;
+    -> end//
+Query OK, 0 rows affected (0.22 sec)
+
+#As The New Column Data Is Not Inserted ...
+mysql> insert into Student values (4,"Hardik","Mumbai",22)
+    -> //
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+
+#With Any Value For New Column ...
+mysql> insert into Student values (4,"Hardik","Mumbai",22,"Val")//
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from Student//
++-----+--------+---------+------+-------+
+| Sid | Name   | Address | Age  | Adult |
++-----+--------+---------+------+-------+
+|   1 | Virat  | Delhi   |   24 | NULL  |
+|   2 | Rohit  | Mumbai  |   22 | NULL  |
+|   3 | Dhoni  | Ranchi  |   32 | NULL  |
+|   4 | Hardik | Mumbai  |   22 | Valid |
++-----+--------+---------+------+-------+
+4 rows in set (0.00 sec)
+
+#With Custom Selection Of Options To Confirm Trigger's Actual Working
+mysql> insert into Student (Sid,Name,Address,Age) values (5,"I.Kishan","Patna",17)//
+Query OK, 1 row affected (0.15 sec)
+
+mysql> select * from Student//
++-----+----------+---------+------+---------+
+| Sid | Name     | Address | Age  | Adult   |
++-----+----------+---------+------+---------+
+|   1 | Virat    | Delhi   |   24 | NULL    |
+|   2 | Rohit    | Mumbai  |   22 | NULL    |
+|   3 | Dhoni    | Ranchi  |   32 | NULL    |
+|   4 | Hardik   | Mumbai  |   22 | Valid   |
+|   5 | I.Kishan | Patna   |   17 | InValid |
++-----+----------+---------+------+---------+
+5 rows in set (0.00 sec)
+
+
+
