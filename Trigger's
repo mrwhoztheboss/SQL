@@ -66,5 +66,5 @@ mysql> select * from Student//
 +-----+----------+---------+------+---------+
 5 rows in set (0.00 sec)
 
-
+mysql>drop trigger adult_check//
 
