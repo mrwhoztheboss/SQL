@@ -1,0 +1,24 @@
+Cursor execution
+
+mysql> delimiter $$
+mysql> create procedure demo42()
+    -> begin
+    -> declare str int;
+    -> declare new cursor for select rollno from student where rollno=24;
+    -> open new;
+    -> fetch from new into str;
+    -> select str;
+    -> close new;
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.02 sec)
+mysql> call demo42();
+    -> $$
++------+
+| str  |
++------+
+|   24 |
++------+
+1 row in set (0.05 sec)
+
+Query OK, 0 rows affected (0.06 sec)
